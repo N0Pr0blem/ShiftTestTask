@@ -1,7 +1,7 @@
 package org.example.adapter.impl;
 
 import lombok.Getter;
-import org.example.adapter.MainAdapter;
+import org.example.adapter.Adapter;
 import org.example.input.Input;
 import org.example.model.Employee;
 import org.example.model.Manager;
@@ -11,7 +11,7 @@ import org.example.parser.impl.ManagerParser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainInputAdapter implements MainAdapter {
+public class InputAdapter implements Adapter {
 
     @Getter
     private List<Employee> employees = new ArrayList<>();

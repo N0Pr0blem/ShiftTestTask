@@ -11,6 +11,6 @@ public class ConsoleInput implements Input {
 
     @Override
     public Stream<String> getData() {
-        return Stream.of(reader.next());
+        return Stream.of(reader.nextLine());
     }
 }

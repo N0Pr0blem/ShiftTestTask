@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MainInputAdapterTest {
 
-    private MainInputAdapter mainAdapter = new MainInputAdapter();
+    private InputAdapter mainAdapter = new InputAdapter();
     private final String FIRST_TEST_FILE_PATH = "src/test/java/org/example/test_files/test_1";
     private final String SECOND_TEST_FILE_PATH = "src/test/java/org/example/test_files/test_2";
 

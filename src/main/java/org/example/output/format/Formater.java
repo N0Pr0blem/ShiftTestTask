@@ -5,6 +5,6 @@ import org.example.model.Manager;
 
 import java.util.List;
 
-public interface Format {
-    String format(List<Employee> employees, List<Manager> managers);
+public interface Formater {
+    String format(List<Employee> employees, List<Manager> managers, List<String> wrongLines);
 }
