@@ -1,11 +1,7 @@
 package org.example.adapter;
 
-import org.example.model.Employee;
-import org.example.model.Manager;
-
-import java.util.List;
+import org.example.input.Input;
 
 public interface MainAdapter {
-    List<Employee> getEmployees();
-    List<Manager> getManagers();
+    void adapt(Input input);
 }

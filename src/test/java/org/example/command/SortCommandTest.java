@@ -1,5 +1,6 @@
 package org.example.command;
 
+import org.example.command.impl.SortCommand;
 import org.example.model.Employee;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
