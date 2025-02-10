@@ -11,21 +11,19 @@ import org.example.parser.impl.ManagerParser;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
 public class MainInputAdapter implements MainAdapter {
 
-    private List<Employee> employees;
-    private List<Manager> managers;
-    private List<String> wrongLines;
+    @Getter
+    private List<Employee> employees = new ArrayList<>();
 
-    private EmployeeParser employeeParser;
-    private ManagerParser managerParser;
+    @Getter
+    private List<Manager> managers = new ArrayList<>();
 
-    public MainInputAdapter() {
-        employees = new ArrayList<>();
-        managers = new ArrayList<>();
-        wrongLines = new ArrayList<>();
-    }
+    @Getter
+    private List<String> wrongLines = new ArrayList<>();
+
+    private EmployeeParser employeeParser = new EmployeeParser();
+    private ManagerParser managerParser = new ManagerParser();
 
     @Override
     public void adapt(Input input) {
@@ -35,10 +33,14 @@ public class MainInputAdapter implements MainAdapter {
 
     private void redirectPerson(String person) {
         try {
-
-        }
-        catch (IllegalArgumentException e) {
-
+            if (person.trim().startsWith("E") || person.trim().startsWith("e")) {
+                employees.add(employeeParser.parse(person));
+            }
+            if (person.trim().startsWith("M") || person.trim().startsWith("m")) {
+                managers.add(managerParser.parse(person));
+            }
+        } catch (IllegalArgumentException e) {
+            wrongLines.add(person);
         }
     }
 

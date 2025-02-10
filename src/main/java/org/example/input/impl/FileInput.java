@@ -1,6 +1,5 @@
 package org.example.input.impl;
 
-import org.example.data.MyData;
 import org.example.input.Input;
 
 import java.io.IOException;
