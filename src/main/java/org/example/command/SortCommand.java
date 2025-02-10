@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class SortCommand implements Command {
 
-    private final List<Employee> employees;
+    private List<Employee> employees;
     private final String sortBy;
     private final boolean ascending;
 
@@ -32,7 +32,7 @@ public class SortCommand implements Command {
             throw new IllegalArgumentException("Wrong field name");
         }
         if (!ascending) {
-            comparator.reversed();
+            comparator = comparator.reversed();
         }
 
         employees.sort(comparator);
