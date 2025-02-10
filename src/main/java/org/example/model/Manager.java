@@ -10,5 +10,14 @@ import lombok.NoArgsConstructor;
 public class Manager {
     private int id;
     private String name;
+    private double salary;
     private String departmentName;
+
+    @Override
+    public String toString() {
+        return "Manager, " + id +
+                ", " + name +
+                ", " + salary +
+                ", " + departmentName;
+    }
 }

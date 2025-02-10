@@ -12,4 +12,12 @@ public class Employee {
     private String name;
     private double salary;
     private int managerId;
+
+    @Override
+    public String toString() {
+        return "Employee, " + id +
+                ", " + name +
+                ", " + salary +
+                ", " + managerId;
+    }
 }
