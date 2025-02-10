@@ -35,9 +35,10 @@ public class MainInputAdapter implements MainAdapter {
         try {
             if (person.trim().startsWith("E") || person.trim().startsWith("e")) {
                 employees.add(employeeParser.parse(person));
-            }
-            if (person.trim().startsWith("M") || person.trim().startsWith("m")) {
+            } else if (person.trim().startsWith("M") || person.trim().startsWith("m")) {
                 managers.add(managerParser.parse(person));
+            } else{
+                throw new IllegalArgumentException("Wrong object type");
             }
         } catch (IllegalArgumentException e) {
             wrongLines.add(person);
