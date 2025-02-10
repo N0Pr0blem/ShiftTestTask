@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 public class FileInput implements Input {
 
-    private Path path;
+    private final Path path;
 
     public FileInput(String path) {
         this.path = Paths.get(path);
@@ -24,6 +24,7 @@ public class FileInput implements Input {
         }
         catch (IOException e){
             System.out.println("Wrong input file path");
+            return Stream.empty();
         }
     }
 }
