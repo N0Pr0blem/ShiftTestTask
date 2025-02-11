@@ -29,6 +29,10 @@ public class BaseFormater implements Formater {
             result.append(amount).append(", ").append(String.format("%.2f",amount/salary)).append("\n");
         });
 
+        wrongLines.forEach(line->{
+            result.append(line).append("\n");
+        });
+
         return result.toString();
     }
 }
