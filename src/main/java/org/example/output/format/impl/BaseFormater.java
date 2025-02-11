@@ -22,14 +22,14 @@ public class BaseFormater implements Formater {
                     .filter(employee -> employee.getManagerId() == manager.getId())
                     .toList();
             amount = filterList.size();
-            for(Employee employee : filterList){
-                salary+= employee.getSalary();
+            for (Employee employee : filterList) {
+                salary += employee.getSalary();
                 result.append(employee).append("\n");
             }
-            result.append(amount).append(", ").append(String.format("%.2f",amount/salary)).append("\n");
+            result.append(amount).append(", ").append(String.format("%.2f", amount / salary)).append("\n");
         });
 
-        wrongLines.forEach(line->{
+        wrongLines.forEach(line -> {
             result.append(line).append("\n");
         });
 

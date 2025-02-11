@@ -33,11 +33,11 @@ public class CommandParser implements Parser<CommandContext> {
         if (outputCommandMatcher.matches()) {
             context = new CommandContext("output");
             context.addArg("type", sortCommandMatcher.group(2));
-            if (outputCommandMatcher.group(4) != null){
-                context.addArg("path",outputCommandMatcher.group(4));
+            if (outputCommandMatcher.group(4) != null) {
+                context.addArg("path", outputCommandMatcher.group(4));
             }
 
-                return context;
+            return context;
         }
 
         throw new IllegalArgumentException("Wrong command style");

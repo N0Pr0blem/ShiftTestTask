@@ -37,7 +37,7 @@ public class InputAdapter implements Adapter {
                 employees.add(employeeParser.parse(person));
             } else if (person.trim().startsWith("M") || person.trim().startsWith("m")) {
                 managers.add(managerParser.parse(person));
-            } else{
+            } else {
                 throw new IllegalArgumentException("Wrong object type");
             }
         } catch (IllegalArgumentException e) {

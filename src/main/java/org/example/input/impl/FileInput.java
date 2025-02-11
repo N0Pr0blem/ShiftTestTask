@@ -18,10 +18,9 @@ public class FileInput implements Input {
 
     @Override
     public Stream<String> getData() {
-        try{
+        try {
             return Files.lines(path);
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Wrong input file path");
             return Stream.empty();
         }

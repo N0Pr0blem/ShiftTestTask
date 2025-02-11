@@ -19,16 +19,15 @@ public class EmployeeParser implements Parser<Employee> {
             throw new IllegalArgumentException("Wrong format for Employee: " + line);
         }
 
-        if(validFields(fields)){
-            return new Employee(id,name,salary,managerId);
-        }
-        else {
+        if (validFields(fields)) {
+            return new Employee(id, name, salary, managerId);
+        } else {
             throw new IllegalArgumentException("Wrong data for Employee: " + line);
         }
     }
 
     private boolean validFields(String[] fields) {
-        if(NumberUtils.isCreatable(fields[1].trim())
+        if (NumberUtils.isCreatable(fields[1].trim())
                 && NumberUtils.isDigits(fields[3].trim())
                 && NumberUtils.isCreatable(fields[4].trim())
         ) {
@@ -38,8 +37,7 @@ public class EmployeeParser implements Parser<Employee> {
             managerId = Integer.parseInt(fields[4].trim());
 
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

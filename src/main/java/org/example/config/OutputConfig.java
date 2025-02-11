@@ -12,9 +12,10 @@ public class OutputConfig {
 
     private Printer printer = new ConsolePrinter();
 
-    private OutputConfig(){}
+    private OutputConfig() {
+    }
 
-    public static OutputConfig getInstance(){
+    public static OutputConfig getInstance() {
         return INSTANCE;
     }
 

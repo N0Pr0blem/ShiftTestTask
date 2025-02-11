@@ -2,9 +2,7 @@ package org.example.command;
 
 import org.example.command.impl.OutputCommand;
 import org.example.command.impl.SortCommand;
-import org.example.config.Config;
 import org.example.model.Employee;
-import org.example.output.printer.Printer;
 import org.example.output.printer.impl.ConsolePrinter;
 import org.example.output.printer.impl.FilePrinter;
 
@@ -44,8 +42,7 @@ public class CommandExecutor {
             } else {
                 return new OutputCommand(new FilePrinter(path));
             }
-        }
-        else{
+        } else {
             throw new IllegalArgumentException("Wrong command style for output");
         }
     }
