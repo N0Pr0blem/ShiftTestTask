@@ -32,9 +32,9 @@ public class CommandParser implements Parser<CommandContext> {
 
         if (outputCommandMatcher.matches()) {
             context = new CommandContext("output");
-            context.addArg("type", sortCommandMatcher.group(2));
-            if (outputCommandMatcher.group(4) != null) {
-                context.addArg("path", outputCommandMatcher.group(4));
+            context.addArg("type", outputCommandMatcher.group(2));
+            if (outputCommandMatcher.groupCount() >= 3 && outputCommandMatcher.group(3) != null) {
+                context.addArg("path", outputCommandMatcher.group(3));
             }
 
             return context;
