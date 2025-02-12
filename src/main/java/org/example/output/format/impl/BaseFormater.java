@@ -18,17 +18,20 @@ public class BaseFormater implements Formater {
             int amount;
             double salary = 0;
             result.append(manager.getDepartmentName()).append("\n");
+            result.append(manager).append("\n");
+            salary += manager.getSalary();
             List<Employee> filterList = employees.stream()
                     .filter(employee -> employee.getManagerId() == manager.getId())
                     .toList();
-            amount = filterList.size();
+            amount = filterList.size() + 1;
             for (Employee employee : filterList) {
                 salary += employee.getSalary();
                 result.append(employee).append("\n");
             }
-            result.append(amount).append(", ").append(String.format("%.2f", amount / salary)).append("\n");
+            result.append(amount).append(", ").append(String.format("%.2f", salary / amount)).append("\n");
         });
 
+        result.append("Некорректные данные:").append("\n");
         wrongLines.forEach(line -> {
             result.append(line).append("\n");
         });

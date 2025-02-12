@@ -25,10 +25,12 @@ public class InputAdapter implements Adapter {
     private EmployeeParser employeeParser = new EmployeeParser();
     private ManagerParser managerParser = new ManagerParser();
 
+    private List<Integer> managerIds = new ArrayList<>();
+
     @Override
     public void adapt(Input input) {
-        input.getData()
-                .forEach(this::redirectPerson);
+        input.getData().forEach(this::redirectPerson);
+        deleteEmployeesWithoutManagers();
     }
 
     private void redirectPerson(String person) {
@@ -36,12 +38,22 @@ public class InputAdapter implements Adapter {
             if (person.trim().startsWith("E") || person.trim().startsWith("e")) {
                 employees.add(employeeParser.parse(person));
             } else if (person.trim().startsWith("M") || person.trim().startsWith("m")) {
-                managers.add(managerParser.parse(person));
+                Manager manager = managerParser.parse(person);
+                managers.add(manager);
+                managerIds.add(manager.getId());
             } else {
                 throw new IllegalArgumentException("Wrong object type");
             }
         } catch (IllegalArgumentException e) {
             wrongLines.add(person);
+        }
+    }
+
+    private void deleteEmployeesWithoutManagers() {
+        for (Employee employee : employees) {
+            if (!managerIds.contains(employee.getManagerId())) {
+                wrongLines.add(employee + "," + employee.getManagerId());
+            }
         }
     }
 

@@ -27,15 +27,17 @@ public class SortCommand implements Command {
 
     @Override
     public void execute() {
-        Comparator<Employee> comparator = COMPARATORS.getOrDefault(sortBy.toLowerCase(), null);
+        if (sortBy!=null) {
+            Comparator<Employee> comparator = COMPARATORS.getOrDefault(sortBy.toLowerCase(), null);
 
-        if (comparator == null) {
-            throw new IllegalArgumentException("Wrong field name");
-        }
-        if (!ascending) {
-            comparator = comparator.reversed();
-        }
+            if (comparator == null) {
+                throw new IllegalArgumentException("Wrong field name");
+            }
+            if (!ascending) {
+                comparator = comparator.reversed();
+            }
 
-        employees.sort(comparator);
+            employees.sort(comparator);
+        }
     }
 }

@@ -23,10 +23,21 @@ public class CommandExecutor {
         this.employees = employees;
     }
 
+    public void execute(CommandContext context){
+        Command command = commandFactory.getOrDefault(context.getCommand(),c->{
+            throw  new IllegalArgumentException("No such command");
+        }).apply(context);
+
+        command.execute();
+    }
+
     private Command createSortCommand(CommandContext context) {
         String sortBy = context.getArg("field");
-        boolean ascending = !context.getArg("order").equalsIgnoreCase("ask");
+        boolean ascending = false;
 
+        if(context.getArg("order")!=null) {
+            ascending = context.getArg("order").equalsIgnoreCase("ask");
+        }
         return new SortCommand(employees, sortBy, ascending);
     }
 
