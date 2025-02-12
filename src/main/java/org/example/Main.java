@@ -10,9 +10,6 @@ import org.example.input.impl.ConsoleInput;
 import org.example.input.impl.FileInput;
 import org.example.model.Employee;
 import org.example.model.Manager;
-import org.example.output.format.Formater;
-import org.example.output.format.impl.BaseFormater;
-import org.example.output.printer.impl.FilePrinter;
 import org.example.parser.impl.CommandParser;
 
 import java.util.List;
@@ -21,7 +18,6 @@ public class Main {
     public static void main(String[] args) {
         InputAdapter inputAdapter = new InputAdapter();
         Input input = new ConsoleInput();
-        Formater formater = new BaseFormater();
 
         inputAdapter.adapt(new FileInput(Config.INPUT_FILE_PATH));
 
@@ -37,9 +33,9 @@ public class Main {
                 CommandContext context = new CommandParser().parse(commandLine);
                 executor.execute(context);
 
-                String output = formater.format(employees, managers, wrongLines);
-
+                String output = OutputConfig.getInstance().getFormater().format(employees, managers, wrongLines);
                 OutputConfig.getInstance().getPrinter().print(output);
+
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
