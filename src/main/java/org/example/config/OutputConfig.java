@@ -14,6 +14,7 @@ public class OutputConfig {
 
     private Printer printer = new ConsolePrinter();
     private Formater formater = new BaseFormater();
+    private boolean commandListenFlag = true;
 
     private OutputConfig() {
     }

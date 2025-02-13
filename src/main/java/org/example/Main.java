@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.adapter.impl.InputAdapter;
+import org.example.adapter.InputAdapter;
 import org.example.command.CommandContext;
 import org.example.command.CommandExecutor;
 import org.example.config.Config;
@@ -8,11 +8,7 @@ import org.example.config.OutputConfig;
 import org.example.input.Input;
 import org.example.input.impl.ConsoleInput;
 import org.example.input.impl.FileInput;
-import org.example.model.Employee;
-import org.example.model.Manager;
 import org.example.parser.impl.CommandParser;
-
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,20 +17,13 @@ public class Main {
 
         inputAdapter.adapt(new FileInput(Config.INPUT_FILE_PATH));
 
-        List<Employee> employees = inputAdapter.getEmployees();
-        List<Manager> managers = inputAdapter.getManagers();
-        List<String> wrongLines = inputAdapter.getWrongLines();
-        CommandExecutor executor = new CommandExecutor(employees);
-        boolean flag = true;
+        CommandExecutor executor = new CommandExecutor(inputAdapter);
 
-        while (flag) {
+        while (OutputConfig.getInstance().isCommandListenFlag()) {
             try {
                 String commandLine = input.getData().findFirst().orElse("");
                 CommandContext context = new CommandParser().parse(commandLine);
                 executor.execute(context);
-
-                String output = OutputConfig.getInstance().getFormater().format(employees, managers, wrongLines);
-                OutputConfig.getInstance().getPrinter().print(output);
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

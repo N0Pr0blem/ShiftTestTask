@@ -1,7 +1,6 @@
-package org.example.adapter.impl;
+package org.example.adapter;
 
 import lombok.Getter;
-import org.example.adapter.Adapter;
 import org.example.input.Input;
 import org.example.model.Employee;
 import org.example.model.Manager;
@@ -11,7 +10,7 @@ import org.example.parser.impl.ManagerParser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InputAdapter implements Adapter {
+public class InputAdapter {
 
     @Getter
     private List<Employee> employees = new ArrayList<>();
@@ -24,10 +23,8 @@ public class InputAdapter implements Adapter {
 
     private EmployeeParser employeeParser = new EmployeeParser();
     private ManagerParser managerParser = new ManagerParser();
-
     private List<Integer> managerIds = new ArrayList<>();
 
-    @Override
     public void adapt(Input input) {
         input.getData().forEach(this::redirectPerson);
         deleteEmployeesWithoutManagers();
