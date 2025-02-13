@@ -6,6 +6,7 @@ import org.example.input.impl.FileInput;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MainInputAdapterTest {
 
@@ -20,17 +21,17 @@ class MainInputAdapterTest {
 
         assertEquals(2, mainAdapter.getManagers().size());
         assertEquals(2, mainAdapter.getEmployees().size());
-        assertEquals(3, mainAdapter.getWrongLines().size());
+        assertEquals(6, mainAdapter.getWrongLines().size());
     }
 
     @Test
-    void adaptTestParseWrongFileText(){
-        String SECOND_TEST_FILE_PATH = "src/test/java/org/example/test_files/test_2";
-        Input fileInput = new FileInput(SECOND_TEST_FILE_PATH);
+    void adaptTestWithEmptyLines() {
+        String TEST_FILE_PATH = "src/test/java/org/example/test_files/test_2";
+        Input fileInput = new FileInput(TEST_FILE_PATH);
 
         mainAdapter.adapt(fileInput);
 
-        assertEquals(5, mainAdapter.getWrongLines().size());
+        assertEquals(1, mainAdapter.getWrongLines().size());
     }
 
 }

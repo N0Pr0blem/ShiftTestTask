@@ -7,11 +7,12 @@ import org.example.output.printer.Printer;
 
 public class PrintCommand implements Command {
 
-    private InputAdapter inputAdapter;
-    private Printer printer;
+    private final InputAdapter inputAdapter;
+    private final Printer printer;
 
     public PrintCommand(InputAdapter inputAdapter, Printer printer) {
         this.inputAdapter = inputAdapter;
+        this.printer = printer;
     }
 
     @Override

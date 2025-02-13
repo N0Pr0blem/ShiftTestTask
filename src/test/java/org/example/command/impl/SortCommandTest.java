@@ -1,7 +1,6 @@
-package org.example.command;
+package org.example.command.impl;
 
 import org.example.adapter.InputAdapter;
-import org.example.command.impl.SortCommand;
 import org.example.model.Employee;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,15 +11,13 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 class SortCommandTest {
-
-    @Mock
-    private InputAdapter inputAdapter = new InputAdapter();
-
+    private InputAdapter inputAdapter;
     private List<Employee> employees;
-    SortCommand sortCommand;
+    private SortCommand sortCommand;
 
     @BeforeEach
     void setup() {
@@ -28,7 +25,7 @@ class SortCommandTest {
                 new Employee(1, "First", 2.1, 1),
                 new Employee(2, "Second", 1.1, 1)
         ));
-
+        inputAdapter = mock(InputAdapter.class);
         when(inputAdapter.getEmployees()).thenReturn(employees);
     }
 
@@ -38,7 +35,7 @@ class SortCommandTest {
 
         sortCommand.execute();
 
-        assertEquals("First", employees.getFirst().getName());
+        assertEquals("First", employees.get(0).getName());
     }
 
     @Test
@@ -47,7 +44,7 @@ class SortCommandTest {
 
         sortCommand.execute();
 
-        assertEquals("Second", employees.getFirst().getName());
+        assertEquals("Second", employees.get(0).getName());
     }
 
     @Test
@@ -63,7 +60,7 @@ class SortCommandTest {
 
         sortCommand.execute();
 
-        assertEquals(1.1, employees.getFirst().getSalary());
+        assertEquals(1.1, employees.get(0).getSalary());
     }
 
     @Test
@@ -72,7 +69,16 @@ class SortCommandTest {
 
         sortCommand.execute();
 
-        assertEquals(2.1, employees.getFirst().getSalary());
+        assertEquals(2.1, employees.get(0).getSalary());
+    }
+
+    @Test
+    void sortCommandByNull() {
+        sortCommand = new SortCommand(inputAdapter, null, false);
+
+        sortCommand.execute();
+
+        assertEquals(1, employees.get(0).getId());
     }
 
 }

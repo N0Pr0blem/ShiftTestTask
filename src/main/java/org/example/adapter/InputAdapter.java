@@ -47,11 +47,13 @@ public class InputAdapter {
     }
 
     private void deleteEmployeesWithoutManagers() {
-        for (Employee employee : employees) {
+        employees.removeIf(employee -> {
             if (!managerIds.contains(employee.getManagerId())) {
                 wrongLines.add(employee + "," + employee.getManagerId());
+                return true;
             }
-        }
+            return false;
+        });
     }
 
 }
