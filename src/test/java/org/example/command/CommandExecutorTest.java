@@ -25,7 +25,7 @@ class CommandExecutorTest {
         commandContext = mock(CommandContext.class);
         when(commandContext.getCommand()).thenReturn("sort");
         when(commandContext.getArg("field")).thenReturn("name");
-        when(commandContext.getArg("order")).thenReturn("ask");
+        when(commandContext.getArg("order")).thenReturn("asc");
 
         commandExecutor.execute(commandContext);
 

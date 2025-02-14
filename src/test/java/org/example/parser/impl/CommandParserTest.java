@@ -21,9 +21,9 @@ class CommandParserTest {
     @Test
     void validateLinesOfSortCommand() {
         List<String> validCommandLines = List.of(
-                "--sort=name --order=ask",
+                "--sort=name --order=asc",
                 "--sort = name --order = desc",
-                " -s=salary --order=ask",
+                " -s=salary --order=asc",
                 "-s =   salary      --order = desc",
                 "-s",
                 "--sort"
