@@ -1,26 +1,23 @@
 package org.example.output.format.impl;
 
+import org.example.adapter.InputAdapter;
 import org.example.model.Employee;
-import org.example.model.Manager;
 import org.example.output.format.Formater;
 
-import java.util.Comparator;
 import java.util.List;
 
-public class BaseFormater implements Formater {
+public class BaseFormater implements Formater<InputAdapter> {
     @Override
-    public String format(List<Employee> employees, List<Manager> managers, List<String> wrongLines) {
+    public String format(InputAdapter inputAdapter) {
         StringBuilder result = new StringBuilder();
 
-        managers.sort(Comparator.comparing(Manager::getDepartmentName));
-
-        managers.forEach(manager -> {
+        inputAdapter.getManagers().forEach(manager -> {
             int amount;
             double salary = 0;
             result.append(manager.getDepartmentName()).append("\n");
             result.append(manager).append("\n");
             salary += manager.getSalary();
-            List<Employee> filterList = employees.stream()
+            List<Employee> filterList = inputAdapter.getEmployees().stream()
                     .filter(employee -> employee.getManagerId() == manager.getId())
                     .toList();
             amount = filterList.size() + 1;
@@ -32,7 +29,7 @@ public class BaseFormater implements Formater {
         });
 
         result.append("Некорректные данные:").append("\n");
-        wrongLines.forEach(line -> {
+        inputAdapter.getWrongLines().forEach(line -> {
             result.append(line).append("\n");
         });
 

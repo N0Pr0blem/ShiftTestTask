@@ -5,8 +5,7 @@ import org.example.parser.Parser;
 
 import java.util.regex.Matcher;
 
-import static org.example.config.Config.OUTPUT_COMMAND_PATTERN;
-import static org.example.config.Config.SORT_COMMAND_PATTERN;
+import static org.example.config.Config.*;
 
 public class CommandParser implements Parser<CommandContext> {
     private CommandContext context;
@@ -17,9 +16,10 @@ public class CommandParser implements Parser<CommandContext> {
 
         Matcher sortCommandMatcher = SORT_COMMAND_PATTERN.matcher(commandLine);
         Matcher outputCommandMatcher = OUTPUT_COMMAND_PATTERN.matcher(commandLine);
+        Matcher exitCommandMatcher = EXIT_COMMAND_PATTERN.matcher(commandLine);
 
         if (commandLine.isEmpty()) {
-            throw new IllegalArgumentException("Wrong command");
+            throw new IllegalArgumentException("Enter the command");
         }
 
         if (sortCommandMatcher.matches()) {
@@ -28,9 +28,7 @@ public class CommandParser implements Parser<CommandContext> {
             context.addArg("order", sortCommandMatcher.group(4));
 
             return context;
-        }
-
-        if (outputCommandMatcher.matches()) {
+        }else if (outputCommandMatcher.matches()) {
             context = new CommandContext("output");
             context.addArg("type", outputCommandMatcher.group(2));
             if (outputCommandMatcher.groupCount() >= 3 && outputCommandMatcher.group(3) != null) {
@@ -38,8 +36,13 @@ public class CommandParser implements Parser<CommandContext> {
             }
 
             return context;
-        }
+        } else if(exitCommandMatcher.matches()){
+            context = new CommandContext("exit");
 
-        throw new IllegalArgumentException("Wrong command style");
+            return context;
+        }
+        else {
+            throw new IllegalArgumentException("Wrong command style");
+        }
     }
 }
