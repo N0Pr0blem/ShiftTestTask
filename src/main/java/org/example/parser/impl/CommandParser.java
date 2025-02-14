@@ -19,7 +19,7 @@ public class CommandParser implements Parser<CommandContext> {
         Matcher exitCommandMatcher = EXIT_COMMAND_PATTERN.matcher(commandLine);
 
         if (commandLine.isEmpty()) {
-            throw new IllegalArgumentException("Wrong command");
+            throw new IllegalArgumentException("Enter the command");
         }
 
         if (sortCommandMatcher.matches()) {
@@ -28,9 +28,7 @@ public class CommandParser implements Parser<CommandContext> {
             context.addArg("order", sortCommandMatcher.group(4));
 
             return context;
-        }
-
-        if (outputCommandMatcher.matches()) {
+        }else if (outputCommandMatcher.matches()) {
             context = new CommandContext("output");
             context.addArg("type", outputCommandMatcher.group(2));
             if (outputCommandMatcher.groupCount() >= 3 && outputCommandMatcher.group(3) != null) {
@@ -38,14 +36,13 @@ public class CommandParser implements Parser<CommandContext> {
             }
 
             return context;
-        }
-
-        if(exitCommandMatcher.matches()){
+        } else if(exitCommandMatcher.matches()){
             context = new CommandContext("exit");
 
             return context;
         }
-
-        throw new IllegalArgumentException("Wrong command style");
+        else {
+            throw new IllegalArgumentException("Wrong command style");
+        }
     }
 }

@@ -1,0 +1,39 @@
+HR
+Manager,1,Jane Smith,5000.0
+Employee,101,John Doe,3000.0
+2, 4000,00
+Sales
+Manager,2,Michael Brown,6000.0
+Employee,105,Anna Taylor,3100.0
+Employee,106,Bnna Taylor,3300.0
+Employee,104,Danna Taylor,4500.0
+4, 4225,00
+Некорректные данные:
+Employee,102,Emily Johnson,abc,1
+Employee,103,Chris White,-2900,2
+Employee,105,Robert Black,,2
+Employee,107,Cnna Taylor,3300.0,3
+Employee,108,My Nigoday,3100.0,6
+
+Некорректные данные:
+
+Некорректные данные:
+
+Некорректные данные:
+
+Некорректные данные:
+
+Некорректные данные:
+
+Некорректные данные:
+
+Некорректные данные:
+
+Некорректные данные:
+
+Некорректные данные:
+
+Некорректные данные:
+
+Некорректные данные:
+
